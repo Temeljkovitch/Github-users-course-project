@@ -1,15 +1,21 @@
 import React from 'react';
 import { Dashboard, Login, PrivateRoute, AuthWrapper, Error } from './pages';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+
 
 function App() {
-  return (
-    <div>
-      <Dashboard></Dashboard>
-      <Login />
-      <Error />
-    </div>
-  );
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <Dashboard/>,
+      errorElement: <Error/>
+    },
+    {
+      path: "login",
+      element: <Login/>
+    }
+  ])
+  return <RouterProvider router={router} />
 }
 
 export default App;
