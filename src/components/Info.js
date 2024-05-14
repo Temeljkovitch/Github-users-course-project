@@ -1,11 +1,61 @@
-import React from 'react';
-import { GithubContext } from '../context/context';
-import styled from 'styled-components';
-import { GoRepo, GoGist } from 'react-icons/go';
-import { FiUsers, FiUserPlus } from 'react-icons/fi';
+import React from "react";
+import { useGlobalContext } from "../context/context";
+import styled from "styled-components";
+import { GoRepo, GoGist } from "react-icons/go";
+import { FiUsers, FiUserPlus } from "react-icons/fi";
 
 const UserInfo = () => {
-  return <h2>user info component</h2>;
+  const { users } = useGlobalContext();
+  const { public_repos, followers, following, public_gists } = users;
+  const items = [
+    {
+      id: 1,
+      icon: <GoRepo className="icon" />,
+      label: "repos",
+      value: public_repos,
+      colors: "pink",
+    },
+    {
+      id: 2,
+      icon: <FiUsers className="icon" />,
+      label: "followers",
+      value: followers,
+      colors: "green",
+    },
+    {
+      id: 3,
+      icon: <FiUserPlus className="icon" />,
+      label: "following",
+      value: following,
+      colors: "purple",
+    },
+    {
+      id: 4,
+      icon: <GoGist className="icon" />,
+      label: "gists",
+      value: public_gists,
+      colors: "yellow",
+    },
+  ];
+  return (
+    <section className="section">
+      <Wrapper className="section-center">
+        {items.map((item) => {
+          const { id, icon, label, value, colors } = item;
+          return (
+            <article key={id} className="item">
+              <span className={colors}>{icon}</span>
+              <div>
+                <h3>{value}</h3>
+                <p>{label}</p>
+              </div>
+            </article>
+          );
+        })}
+      </Wrapper>
+      ;
+    </section>
+  );
 };
 
 const Wrapper = styled.section`
