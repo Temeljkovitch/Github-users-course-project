@@ -5,19 +5,20 @@ import ReactFusioncharts from "react-fusioncharts";
 // Resolves charts dependancy
 charts(FusionCharts);
 
-const Pie3D = ({ data }) => {
+const Doughnut3D = ({ data }) => {
   const dataSource = {
     chart: {
-      caption: "Languages",
-      decimals: 0,
-      pieRadius: "45%",
+      caption: "Stars Per Language",
+      doughtnutRadius: "45%",
+      showPercentValues: 0,
     },
     data,
   };
+
   return (
     <ReactFusioncharts
-      type="pie3d"
-      width="400"
+      type="doughnut3d"
+      width="100%"
       height="400"
       dataFormat="JSON"
       dataSource={dataSource}
@@ -25,4 +26,4 @@ const Pie3D = ({ data }) => {
   );
 };
 
-export default Pie3D;
+export default Doughnut3D;
