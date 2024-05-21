@@ -1,4 +1,3 @@
-import React from 'react';
 import { Dashboard, Login, PrivateRoute, AuthWrapper, Error } from './pages';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 

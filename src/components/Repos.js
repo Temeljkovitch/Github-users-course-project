@@ -1,4 +1,3 @@
-import React from "react";
 import styled from "styled-components";
 import { useGlobalContext } from "../context/context";
 import { Pie3D, Column3D, Bar3D, Doughnut3D } from "./Charts";
@@ -21,14 +20,14 @@ const Repos = () => {
     return total;
   }, {});
 
-  // Getting the five most used languages
+  // Five most used languages
   const mostUsed = Object.values(languages)
     .sort((a, b) => {
       return b.value - a.value;
     })
     .slice(0, 5);
 
-  // Getting the five most popular languages (most number of stars)
+  // Five most popular languages (most number of stars)
   const mostPopular = Object.values(languages)
     .sort((a, b) => {
       return b.stars - a.stars;
@@ -38,11 +37,29 @@ const Repos = () => {
     })
     .slice(0, 5);
 
+  // Stars , Forks
+  let { stars, forks } = repos.reduce(
+    (total, item) => {
+      const { stargazers_count, name, forks } = item;
+      total.stars[stargazers_count] = { label: name, value: stargazers_count };
+      total.forks[forks] = { label: name, value: forks };
+      return total;
+    },
+    {
+      stars: {},
+      forks: {},
+    }
+  );
+  stars = Object.values(stars).slice(-5).reverse();
+  forks = Object.values(forks).slice(-5).reverse();
+
   return (
     <section className="section">
       <Wrapper className="section-center">
         <Pie3D data={mostUsed} />
+        <Column3D data={stars} />
         <Doughnut3D data={mostPopular} />
+        <Bar3D data={forks} />
       </Wrapper>
     </section>
   );
