@@ -1,9 +1,8 @@
-import React from "react";
-import { GithubContext, useGlobalContext } from "../context/context";
+import { useGlobalContext } from "../context/context";
 import styled from "styled-components";
 import { MdBusiness, MdLocationOn, MdLink } from "react-icons/md";
 const Card = () => {
-  const { users } = useGlobalContext();
+  const { githubUser } = useGlobalContext();
   const {
     avatar_url,
     html_url,
@@ -13,14 +12,15 @@ const Card = () => {
     bio,
     location,
     twitter_username,
-  } = users;
+  } = githubUser;
   return (
     <Wrapper>
       <header>
         <img src={avatar_url} alt={`${name}'s photo`}></img>
         <div>
           <h4>{name}</h4>
-          <p>@{twitter_username || "john doe"}</p>
+          {twitter_username && <p>@{twitter_username}</p>}
+          {/* <p>@{twitter_username || "john doe"}</p> */}
         </div>
         <a href={html_url}>follow</a>
       </header>

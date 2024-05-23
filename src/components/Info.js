@@ -1,12 +1,11 @@
-import React from "react";
 import { useGlobalContext } from "../context/context";
 import styled from "styled-components";
 import { GoRepo, GoGist } from "react-icons/go";
 import { FiUsers, FiUserPlus } from "react-icons/fi";
 
 const UserInfo = () => {
-  const { users } = useGlobalContext();
-  const { public_repos, followers, following, public_gists } = users;
+  const { githubUser } = useGlobalContext();
+  const { public_repos, followers, following, public_gists } = githubUser;
   const items = [
     {
       id: 1,

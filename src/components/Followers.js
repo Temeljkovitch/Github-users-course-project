@@ -1,4 +1,3 @@
-import React from "react";
 import { useGlobalContext } from "../context/context";
 import styled from "styled-components";
 
