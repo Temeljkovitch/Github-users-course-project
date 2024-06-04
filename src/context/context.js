@@ -21,21 +21,23 @@ const GithubProvider = ({ children }) => {
 
   const searchGithubUser = async (user) => {
     try {
-      toggleError(); // Invoking error without arguments to clear previous error message (if you previosly searched for a user that does not exist).
+      toggleError(); // Invoking error without arguments to clear previous error message (if you previously searched for a user that does not exist).
       setIsLoading(true);
+      // User
       const { data } = await axios.get(`${rootUrl}/users/${user}`);
+      console.log(data);
       setGithubUser(data);
       const { login, followers_url } = data;
       // Repos
       const { data: repos } = await axios.get(
         `${rootUrl}/users/${login}/repos?per_page=100`
       );
-      setRepos(repos)
+      setRepos(repos);
       // Followers
       const { data: followers } = await axios.get(
         `${followers_url}?per_page=100`
       );
-      setFollowers(followers)
+      setFollowers(followers);
     } catch (error) {
       console.log(error);
       toggleError(true, "no user with that username!");

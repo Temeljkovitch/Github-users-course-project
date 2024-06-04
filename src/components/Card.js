@@ -27,13 +27,13 @@ const Card = () => {
       <p className="bio">{bio}</p>
       <div className="links">
         <p>
-          <MdBusiness /> {company}
+          <MdBusiness /> {company || "Freelancer"}
         </p>
         <p>
-          <MdLocationOn /> {location || "earth"}
+          <MdLocationOn /> {location || "Earth"}
         </p>
-        <a href={`https://${blog}`}>
-          <MdLink /> {blog}
+        <a href={blog ? `https://${blog}` : "https://google.com"}>
+          <MdLink /> {blog || "google.com"}
         </a>
       </div>
     </Wrapper>
